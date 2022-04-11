@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home_icon"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_commandes"
+            android:icon="@drawable/tracking"
+            android:title="Commandes" />
+    </group>
+
+    <item android:title="Utilisateur">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_profil"
+                    android:icon="@drawable/profil"
+                    android:title="Profil" />
+                <item
+                    android:id="@+id/nav_login"
+                    android:icon="@drawable/profil"
+                    android:title="Connexion" />
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/logout_icon"
+                    android:title="Déconnexion" />
+                <item
+                    android:id="@+id/nav_mail"
+                    android:icon="@drawable/mail"
+                    android:title="E-mail" />
+                <item
+                    android:id="@+id/nav_chat"
+                    android:icon="@drawable/chat"
+                    android:title="Chat" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Options">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_avis"
+                    android:icon="@drawable/avis"
+                    android:title="Avis" />
+                <item
+                    android:id="@+id/nav_politique"
+                    android:icon="@drawable/politique"
+                    android:title="A propos" />
+                <item
+                    android:id="@+id/nav_partager"
+                    android:icon="@drawable/partager"
+                    android:title="Partager" />
+            </group>
+        </menu>
+    </item>
+
+</menu>

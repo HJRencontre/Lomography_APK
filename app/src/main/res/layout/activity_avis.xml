@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Avis"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <!-- Desactiver la balise openDrawer ci -dessus pour enlever le menu qui gène si on veut
+    modif la page princpale-->
+
+    <!-- La balise navigation view ci-dessous permet de gérer le contenu de notre menu burger
+    Si on veut modifier la main page il suffit de la supprimer temporairement puis de la remettre
+    après-->
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/main_menu"
+        android:layout_gravity="start"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/menu" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="215sp"
+                android:layout_height="83sp"
+                android:layout_marginStart="98dp"
+                android:layout_marginEnd="98dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                app:srcCompat="@drawable/lomography_logo" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="133dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginEnd="133dp"
+                android:text="Donnez nous votre avis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="170dp"
+                android:text="Êtes vous satisfait de l'application ? "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <RadioGroup
+                android:id="@+id/idAvisApp"
+                android:layout_width="379dp"
+                android:layout_height="96dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="18dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView12">
+
+                <RadioButton
+                    android:id="@+id/idAvisApp1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Très satisfait" />
+
+                <RadioButton
+                    android:id="@+id/idAvisApp2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Moyennement satisfait" />
+
+                <RadioButton
+                    android:id="@+id/idAvisApp3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pas satisfait" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/idAvisValider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="161dp"
+                android:layout_marginTop="202dp"
+                android:text="Valider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/idAvisApp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</androidx.drawerlayout.widget.DrawerLayout>
