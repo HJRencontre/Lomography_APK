@@ -141,7 +141,7 @@ public class Avis extends AppCompatActivity implements NavigationView.OnNavigati
                 case R.id.idAvisApp3: score = 8;break;
             }
             
-            Toast.makeText(this, "Merci pour votre réponse! Score :" + score, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Merci pour votre réponse ! Score :" + score, Toast.LENGTH_SHORT).show();
             Intent unIntent = new Intent(this, MainActivity.class);
             this.startActivity(unIntent);
         }
