@@ -28,7 +28,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Commandes extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-    //Bonjour bg
+
     private Button btRetourCmdToMenu, btCmdToSAV;
     private ListView lvListeCmd;
 
