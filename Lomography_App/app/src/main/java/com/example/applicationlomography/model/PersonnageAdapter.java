@@ -1,3 +1,4 @@
+/*
 package net.merryservices.androidtestapi.model;
 
 import android.content.Context;
@@ -7,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.applicationlomography.model.Personnage;
+import com.example.applicationlomography.services.ServerApi;
 
 import net.merryservices.androidtestapi.R;
 import net.merryservices.androidtestapi.services.ServerApi;
@@ -57,3 +61,4 @@ public class PersonnageAdapter extends BaseAdapter {
         return rowView;
     }
 }
+*/

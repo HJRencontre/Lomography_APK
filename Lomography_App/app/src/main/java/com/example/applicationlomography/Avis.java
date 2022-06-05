@@ -90,7 +90,7 @@ public class Avis extends AppCompatActivity implements NavigationView.OnNavigati
                 startActivity(intentHome);
                 break;
             case R.id.nav_commandes:
-                Intent intentCommande = new Intent(Avis.this, Commandes.class);
+                Intent intentCommande = new Intent(Avis.this, CommandeActivity.class);
                 startActivity(intentCommande);
                 break;
             case R.id.nav_login:

@@ -34,7 +34,7 @@
             android:name=".Connexion"
             android:exported="false" />
         <activity
-            android:name=".Commandes"
+            android:name=".CommandeActivity"
             android:exported="false" />
         <activity
             android:name=".Avis"

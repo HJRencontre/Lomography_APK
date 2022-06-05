@@ -105,7 +105,7 @@ public class Email extends AppCompatActivity implements NavigationView.OnNavigat
             this.startActivity(unIntent);
         } else {
             if(view.getId() == R.id.idRetourSAVToCmd){
-                Intent unIntent = new Intent(this, Commandes.class);
+                Intent unIntent = new Intent(this, CommandeActivity.class);
                 this.startActivity(unIntent);
             }
         }
@@ -129,7 +129,7 @@ public class Email extends AppCompatActivity implements NavigationView.OnNavigat
                 startActivity(intentHome);
                 break;
             case R.id.nav_commandes:
-                Intent intentCommande = new Intent(Email.this, Commandes.class);
+                Intent intentCommande = new Intent(Email.this, CommandeActivity.class);
                 startActivity(intentCommande);
                 break;
             case R.id.nav_login:

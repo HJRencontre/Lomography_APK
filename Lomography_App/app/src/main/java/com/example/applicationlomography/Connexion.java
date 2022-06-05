@@ -94,7 +94,7 @@ public class Connexion extends AppCompatActivity implements NavigationView.OnNav
                 startActivity(intentHome);
                 break;
             case R.id.nav_commandes:
-                Intent intentCommande = new Intent(Connexion.this, Commandes.class);
+                Intent intentCommande = new Intent(Connexion.this, CommandeActivity.class);
                 startActivity(intentCommande);
                 break;
             case R.id.nav_login:
@@ -143,7 +143,7 @@ public class Connexion extends AppCompatActivity implements NavigationView.OnNav
             this.startActivity(unIntent);
         } else {
             if(view.getId() == R.id.idLoginToCmd){
-                Intent unIntent = new Intent(this, Commandes.class);
+                Intent unIntent = new Intent(this, CommandeActivity.class);
                 this.startActivity(unIntent);
             } else {
                 if (view.getId() == R.id.idRetourLoginToMenu) {

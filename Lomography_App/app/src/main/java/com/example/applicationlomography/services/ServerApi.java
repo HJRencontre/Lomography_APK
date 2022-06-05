@@ -14,6 +14,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.applicationlomography.model.Livraison;
 import com.google.gson.Gson;
 
 import com.example.applicationlomography.MainActivity;
@@ -51,6 +52,24 @@ public class ServerApi {
             }
         });
         // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
+    public static void getLivraisons(Context context, final IListenerAPI listenerAPI){
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_API+"livraison",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response){
+                        Gson gson = new Gson();
+                        Livraison[] tempArray = gson.fromJson(response,Livraison[].class);
+                        listenerAPI.receiveLivraison(new ArrayList<Livraison>(Arrays.asList(tempArray)));
+                        Log.d(TAG, "OK je suis là");
+                    }
+                }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error){Log.d(TAG, "error");}
+        });
         queue.add(stringRequest);
     }
 

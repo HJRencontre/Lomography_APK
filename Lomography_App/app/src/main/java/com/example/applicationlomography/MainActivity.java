@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    private static HashMap<String, Commandes> lesCommandes = new HashMap<>();
+    private static HashMap<String, CommandeActivity> lesCommandes = new HashMap<>();
     private RelativeLayout boxCommandes, boxProfil, boxEmail, boxChat, boxAvis, boxAPropos;
 
     //--------------------Communication BDD---------------------//
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_home:
                 break;
             case R.id.nav_commandes:
-                Intent intentCommande = new Intent(MainActivity.this,Commandes.class);
+                Intent intentCommande = new Intent(MainActivity.this, CommandeActivity.class);
                 startActivity(intentCommande);
                 break;
             case R.id.nav_login:
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onClick(View view) {
         if (view.getId()==R.id.idBoxCommandes)
         {
-            Intent unIntent = new Intent(this, Commandes.class);
+            Intent unIntent = new Intent(this, CommandeActivity.class);
             this.startActivity(unIntent);
         }
         else if (view.getId()==R.id.idBoxConnexion)
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public static Commandes getCommandes(String cmd){
+    public static CommandeActivity getCommandes(String cmd){
         return lesCommandes.get(cmd);
     }
 }

@@ -7,7 +7,7 @@ class DAO {
     }
 
     public function get($id=null){
-        $query = "SELECT * FROM ".$this->resource. ($id ? " where id=".$id : "");
+        $query = "SELECT * FROM ".$this->resource. ($id ? " where idlivraison=".$id : "");
         $response = array();
         $result = mysqli_query($this->conn, $query);
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
