@@ -26,19 +26,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Connexion extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private Button btSeConnecter, btVoirCmd, btRetourLoginToMenu;
     private EditText txtMail, txtMdp;
+    private boolean login=false;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
 
-    //--------------------Communication BDD---------------------//
-    Gson gson = new GsonBuilder().setLenient().create();
-
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://172.16.1.29/Java_Api/")
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build();
-    //PHPApi phpApi = retrofit.create(PHPApi.class);
-    //-------------------- Fin ---------------------//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_home:
                 break;
             case R.id.nav_commandes:
-                Intent intentCommande = new Intent(MainActivity.this, CommandeActivity.class);
+                Intent intentCommande = new Intent(MainActivity.this, LivraisonActivity.class);
                 startActivity(intentCommande);
                 break;
             case R.id.nav_login:
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onClick(View view) {
         if (view.getId()==R.id.idBoxCommandes)
         {
-            Intent unIntent = new Intent(this, CommandeActivity.class);
+            Intent unIntent = new Intent(this, LivraisonActivity.class);
             this.startActivity(unIntent);
         }
         else if (view.getId()==R.id.idBoxConnexion)

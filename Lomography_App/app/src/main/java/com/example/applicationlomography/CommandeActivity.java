@@ -26,7 +26,14 @@ import java.util.ArrayList;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CommandeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+import com.example.applicationlomography.model.Livraison;
+import com.example.applicationlomography.model.LivraisonAdapter;
+import com.example.applicationlomography.model.Personnage;
+import com.example.applicationlomography.services.IListenerAPI;
+import com.google.android.material.navigation.NavigationView;
+
+
+public class CommandeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, IListenerAPI{
 
     private Button btRetourCmdToMenu, btCmdToSAV;
     private ListView lvListeCmd;
@@ -73,7 +80,7 @@ public class CommandeActivity extends AppCompatActivity implements NavigationVie
 
         this.btRetourCmdToMenu = (Button) findViewById(R.id.idRetourCmdToMenu);
         this.btCmdToSAV = (Button) findViewById(R.id.idCmdToSAV);
-        this.lvListeCmd = (ListView) findViewById(R.id.idListeCmd);
+        this.lvListeCmd = (ListView) findViewById(R.id.idLivraison);
         //Rendre les boutons écoutables
         this.btRetourCmdToMenu.setOnClickListener(this);
         this.btCmdToSAV.setOnClickListener(this);
@@ -160,5 +167,10 @@ public class CommandeActivity extends AppCompatActivity implements NavigationVie
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void receiveLivraison(ArrayList<Livraison> livraisons) {
+
     }
 }

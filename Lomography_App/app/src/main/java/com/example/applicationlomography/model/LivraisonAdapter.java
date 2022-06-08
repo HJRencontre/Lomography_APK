@@ -8,11 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.applicationlomography.R;
 import com.example.applicationlomography.model.Livraison;
 import com.example.applicationlomography.services.ServerApi;
-
-//import net.merryservices.androidtestapi.R;
-//import net.merryservices.androidtestapi.services.ServerApi;
 
 import java.util.ArrayList;
 
@@ -36,21 +34,25 @@ public class LivraisonAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return livraisons.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public Object getItem(int position) {
+        return livraisons.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return 0;
+    public long getItemId(int position) {
+        return livraisons.get(position).getIdlivraison();
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+    public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View rowView = inflater.inflate(R.layout.item_livraison, null);
+        TextView textView = (TextView) rowView.findViewById(R.id.textView);
+        textView.setText(livraisons.get(position).getIdlivraison());
+        return rowView;
     }
 }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.*;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,7 +20,7 @@ import com.google.gson.Gson;
 
 import com.example.applicationlomography.MainActivity;
 import com.example.applicationlomography.R;
-import com.example.applicationlomography.model.Personnage;
+import com.example.applicationlomography.model.Livraison;
 import com.example.applicationlomography.services.IListenerAPI;
 
 import java.util.ArrayList;
@@ -29,51 +30,33 @@ import java.util.Map;
 
 public class ServerApi {
     private static String TAG= "API REQUEST";
-    private static String URL_API= "http://10.94.1.67/Promotion_241/Projets/apirestexemple-master/server/";
+    private static String URL_API= "http://192.168.1.23:80/PHP/Lomography_APK/server/";
 
-    public static void getPersonnages(Context context, final IListenerAPI listenerAPI){
+    public static void getLivraisons(Context context, final IListenerAPI listenerAPI) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
         // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_API+"personnages",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_API + "user",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
                         Gson gson = new Gson();
-                        Personnage[] tempArray = gson.fromJson(response, Personnage[].class);
-                        listenerAPI.receivePersonnages(new ArrayList<Personnage>(Arrays.asList(tempArray)));
+                        Livraison[] tempArray = gson.fromJson(response, Livraison[].class);
+                        listenerAPI.receiveLivraison(new ArrayList<Livraison>(Arrays.asList(tempArray)));
                         Log.d(TAG, "Ok je suis la");
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d(TAG,  "error" );
+                Log.d(TAG, "error");
             }
         });
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
 
-    public static void getLivraisons(Context context, final IListenerAPI listenerAPI){
-        RequestQueue queue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_API+"livraison",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response){
-                        Gson gson = new Gson();
-                        Livraison[] tempArray = gson.fromJson(response,Livraison[].class);
-                        listenerAPI.receiveLivraison(new ArrayList<Livraison>(Arrays.asList(tempArray)));
-                        Log.d(TAG, "OK je suis là");
-                    }
-                }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error){Log.d(TAG, "error");}
-        });
-        queue.add(stringRequest);
-    }
-
-    public static void loadImage(Context context, String url, final ImageView imageView){
+/*    public static void loadImage(Context context, String url, final ImageView imageView){
         RequestQueue queue = Volley.newRequestQueue(context);
         ImageRequest request = new ImageRequest(url,
             new Response.Listener<Bitmap>() {
@@ -88,9 +71,9 @@ public class ServerApi {
                 }
             });
         queue.add(request);
-    }
+    }*/
 
-    public static void createPersonnage(final Context context, final Personnage personnage){
+    /*public static void createPersonnage(final Context context, final Personnage personnage){
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest postRequest = new StringRequest(Request.Method.POST, URL_API + "personnages", new Response.Listener<String>() {
             @Override
@@ -116,8 +99,9 @@ public class ServerApi {
         };
         queue.add(postRequest);
     }
+     */
 
-    public static void updatePersonnage(final Context context, final Personnage personnage){
+    /*public static void updatePersonnage(final Context context, final Personnage personnage){
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest putRequest = new StringRequest(Request.Method.PUT, URL_API + "personnages/"+personnage.getId(), new Response.Listener<String>() {
             @Override
@@ -142,9 +126,9 @@ public class ServerApi {
             }
         };
         queue.add(putRequest);
-    }
+    }*/
 
-    public  static void deletePersonnage(final Context context, int idPersonnage){
+    /*public  static void deletePersonnage(final Context context, int idPersonnage){
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest deleteRequest = new StringRequest(Request.Method.DELETE, URL_API + "personnages/"+idPersonnage, new Response.Listener<String>() {
             @Override
@@ -159,5 +143,5 @@ public class ServerApi {
             }
         });
         queue.add(deleteRequest);
-    }
+    }*/
 }
