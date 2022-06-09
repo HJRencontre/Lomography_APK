@@ -1,4 +1,4 @@
-package net.merryservices.androidtestapi.model;
+package com.example.applicationlomography.model;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,8 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import net.merryservices.androidtestapi.R;
-import net.merryservices.androidtestapi.services.ServerApi;
+import com.example.applicationlomography.R;
+import com.example.applicationlomography.services.ServerApi;
 
 import java.util.ArrayList;
 
