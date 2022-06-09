@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,7 +26,14 @@ import java.util.ArrayList;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Commandes extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+import com.example.applicationlomography.model.Livraison;
+import com.example.applicationlomography.model.LivraisonAdapter;
+import com.example.applicationlomography.model.Personnage;
+import com.example.applicationlomography.services.IListenerAPI;
+import com.google.android.material.navigation.NavigationView;
+
+
+public class CommandeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, IListenerAPI{
 
     private Button btRetourCmdToMenu, btCmdToSAV;
     private ListView lvListeCmd;
@@ -74,7 +80,7 @@ public class Commandes extends AppCompatActivity implements NavigationView.OnNav
 
         this.btRetourCmdToMenu = (Button) findViewById(R.id.idRetourCmdToMenu);
         this.btCmdToSAV = (Button) findViewById(R.id.idCmdToSAV);
-        this.lvListeCmd = (ListView) findViewById(R.id.idListeCmd);
+        this.lvListeCmd = (ListView) findViewById(R.id.idLivraison);
         //Rendre les boutons écoutables
         this.btRetourCmdToMenu.setOnClickListener(this);
         this.btCmdToSAV.setOnClickListener(this);
@@ -119,39 +125,39 @@ public class Commandes extends AppCompatActivity implements NavigationView.OnNav
 
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
-                Intent intentHome = new Intent(Commandes.this, MainActivity.class);
+                Intent intentHome = new Intent(CommandeActivity.this, MainActivity.class);
                 startActivity(intentHome);
                 break;
             case R.id.nav_commandes:
-                Intent intentCommande = new Intent(Commandes.this, Commandes.class);
+                Intent intentCommande = new Intent(CommandeActivity.this, CommandeActivity.class);
                 startActivity(intentCommande);
                 break;
             case R.id.nav_login:
-                Intent intentLogin = new Intent(Commandes.this, Connexion.class);
+                Intent intentLogin = new Intent(CommandeActivity.this, Connexion.class);
                 startActivity(intentLogin);
                 break;
             case R.id.nav_profil:
-                Intent intentProfil = new Intent(Commandes.this, Profil.class);
+                Intent intentProfil = new Intent(CommandeActivity.this, Profil.class);
                 startActivity(intentProfil);
                 break;
             case R.id.nav_logout:
-                Intent intentLogout = new Intent(Commandes.this, Logout.class);
+                Intent intentLogout = new Intent(CommandeActivity.this, Logout.class);
                 startActivity(intentLogout);
                 break;
             case R.id.nav_mail:
-                Intent intentMail = new Intent(Commandes.this, Email.class);
+                Intent intentMail = new Intent(CommandeActivity.this, Email.class);
                 startActivity(intentMail);
                 break;
             case R.id.nav_chat:
-                Intent intentChat = new Intent(Commandes.this, Chat.class);
+                Intent intentChat = new Intent(CommandeActivity.this, Chat.class);
                 startActivity(intentChat);
                 break;
             case R.id.nav_avis:
-                Intent intentAvis = new Intent(Commandes.this, Avis.class);
+                Intent intentAvis = new Intent(CommandeActivity.this, Avis.class);
                 startActivity(intentAvis);
                 break;
             case R.id.nav_politique:
-                Intent intentPolitique = new Intent(Commandes.this, APropos.class);
+                Intent intentPolitique = new Intent(CommandeActivity.this, APropos.class);
                 startActivity(intentPolitique);
                 break;
             case R.id.nav_partager:
@@ -161,5 +167,10 @@ public class Commandes extends AppCompatActivity implements NavigationView.OnNav
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void receiveLivraison(ArrayList<Livraison> livraisons) {
+
     }
 }

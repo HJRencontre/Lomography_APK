@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 package com.example.applicationlomography.model;
+=======
+/*
+package net.merryservices.androidtestapi.model;
+>>>>>>> d36ad920886dd47885bdfbfcc1c6d958e99c79c5
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,8 +13,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+<<<<<<< HEAD
 import com.example.applicationlomography.R;
 import com.example.applicationlomography.services.ServerApi;
+=======
+import com.example.applicationlomography.model.Personnage;
+import com.example.applicationlomography.services.ServerApi;
+
+import net.merryservices.androidtestapi.R;
+import net.merryservices.androidtestapi.services.ServerApi;
+>>>>>>> d36ad920886dd47885bdfbfcc1c6d958e99c79c5
 
 import java.util.ArrayList;
 
@@ -57,3 +70,4 @@ public class PersonnageAdapter extends BaseAdapter {
         return rowView;
     }
 }
+*/

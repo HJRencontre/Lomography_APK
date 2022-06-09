@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/hjren/StudioProjects/Lomography_APK/app/src/main/res/drawable/logout_icon.xml" value="0.2995" />
+        <entry key="..\:/xampp/htdocs/PHP/Lomography_APK/Lomography_App/app/src/main/res/layout/activity_commandes.xml" value="0.3109375" />
+        <entry key="..\:/xampp/htdocs/PHP/Lomography_APK/Lomography_App/app/src/main/res/layout/activity_email.xml" value="0.3109375" />
+        <entry key="..\:/xampp/htdocs/PHP/Lomography_APK/Lomography_App/app/src/main/res/layout/activity_profil.xml" value="0.3109375" />
+        <entry key="..\:/xampp/htdocs/PHP/Lomography_APK/Lomography_App/app/src/main/res/layout/item_livraison.xml" value="0.3109375" />
       </map>
     </option>
   </component>
