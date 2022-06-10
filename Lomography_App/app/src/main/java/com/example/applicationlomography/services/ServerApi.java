@@ -30,13 +30,13 @@ import java.util.Map;
 
 public class ServerApi {
     private static String TAG= "API REQUEST";
-    private static String URL_API= "http://192.168.1.23:80/PHP/Lomography_APK/server/";
+    private static String URL_API= "http://172.16.3.18/Promotion_241/Projets/Lomography_PPE/server/";
 
     public static void getLivraisons(Context context, final IListenerAPI listenerAPI) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
         // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_API + "user",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_API + "livraison",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -54,6 +54,32 @@ public class ServerApi {
         });
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
+
+    public static void connexion(final Context context, final String email, String mdp, IListenerAPIConnexion listener){
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, URL_API + "connexion", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(context, "Connexion OK", Toast.LENGTH_LONG);
+                context.startActivity(new Intent(context, MainActivity.class));
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG,error.getMessage() );
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("email", email);
+                params.put("mdp", mdp);
+                return params;
+            }
+        };
+        queue.add(postRequest);
     }
 
 /*    public static void loadImage(Context context, String url, final ImageView imageView){

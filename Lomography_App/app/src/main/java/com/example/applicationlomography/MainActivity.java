@@ -7,7 +7,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,15 +34,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static HashMap<String, CommandeActivity> lesCommandes = new HashMap<>();
     private RelativeLayout boxCommandes, boxProfil, boxEmail, boxChat, boxAvis, boxAPropos;
 
-    //--------------------Communication BDD---------------------//
-    Gson gson = new GsonBuilder().setLenient().create();
-
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://172.16.1.29/Java_Api/")
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build();
-    //PHPApi phpApi = retrofit.create(PHPApi.class);
-    //-------------------- Fin ---------------------//
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        boolean isconnected = sharedPref.getBoolean("ISCONNECTED", false);
+        if(!isconnected){
+            Intent intent= new Intent(MainActivity.this, Connexion.class);
+            startActivity(intent);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

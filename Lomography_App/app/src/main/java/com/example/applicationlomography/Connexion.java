@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.applicationlomography.services.IListenerAPIConnexion;
+import com.example.applicationlomography.services.ServerApi;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -23,7 +25,7 @@ import com.google.gson.GsonBuilder;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Connexion extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+public class Connexion extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, IListenerAPIConnexion {
     private Button btSeConnecter, btVoirCmd, btRetourLoginToMenu;
     private EditText txtMail, txtMdp;
     private boolean login=false;
@@ -39,12 +41,12 @@ public class Connexion extends AppCompatActivity implements NavigationView.OnNav
         this.txtMail=(EditText) findViewById(R.id.idMail);
         this.txtMdp=(EditText) findViewById(R.id.idMdp);
         this.btSeConnecter=(Button) findViewById(R.id.idSeConnecter);
-        this.btVoirCmd=(Button) findViewById(R.id.idLoginToCmd);
-        this.btRetourLoginToMenu=(Button) findViewById(R.id.idRetourLoginToMenu);
+        //this.btVoirCmd=(Button) findViewById(R.id.idLoginToCmd);
+        //this.btRetourLoginToMenu=(Button) findViewById(R.id.idRetourLoginToMenu);
 
         this.btSeConnecter.setOnClickListener(this);
-        this.btRetourLoginToMenu.setOnClickListener(this);
-        this.btVoirCmd.setOnClickListener(this);
+        //this.btRetourLoginToMenu.setOnClickListener(this);
+        //this.btVoirCmd.setOnClickListener(this);
 
         /*----------------------Hooks--------------------*/
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -125,15 +127,13 @@ public class Connexion extends AppCompatActivity implements NavigationView.OnNav
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.idSeConnecter){
-            Intent unIntent = new Intent(this, MainActivity.class);
             String mailValue = this.txtMail.getText().toString();
-            Toast.makeText(this, "Connexion réussie : " + mailValue, Toast.LENGTH_LONG).show();
-            this.startActivity(unIntent);
-        } else {
+            String mdpValue = this.txtMdp.getText().toString();
+            ServerApi.connexion(this, mailValue, mdpValue, this);
+        } /*else {
             if(view.getId() == R.id.idLoginToCmd){
                 Intent unIntent = new Intent(this, CommandeActivity.class);
                 this.startActivity(unIntent);
@@ -143,6 +143,19 @@ public class Connexion extends AppCompatActivity implements NavigationView.OnNav
                     this.startActivity(unIntent);
                 }
             }
+        }*/
+    }
+
+    @Override
+    public void isConnect(boolean connect) {
+        if (connect) {
+            Intent unIntent = new Intent(this, MainActivity.class);
+            this.startActivity(unIntent);
+            Toast.makeText(this, "Connexion réussie : ", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            Toast.makeText(this, "Connexion impossible, vérifiez vos identifiants : ", Toast.LENGTH_LONG).show();
         }
     }
 }

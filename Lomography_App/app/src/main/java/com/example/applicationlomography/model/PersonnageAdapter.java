@@ -1,6 +1,7 @@
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 package com.example.applicationlomography.model;
 =======
+ */
 /*
 package net.merryservices.androidtestapi.model;
 >>>>>>> d36ad920886dd47885bdfbfcc1c6d958e99c79c5

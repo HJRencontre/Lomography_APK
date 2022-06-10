@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".Connexion"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    tools:openDrawer="start"
+    >
 
     <!-- Desactiver la balise openDrawer ci -dessus pour enlever le menu qui gène si on veut
     modif la page princpale-->
@@ -117,7 +118,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/idMdp" />
 
-            <Button
+            <!--<Button
                 android:id="@+id/idRetourLoginToMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -137,7 +138,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Voir commandes"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/idSeConnecter" />
+                app:layout_constraintTop_toBottomOf="@+id/idSeConnecter" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

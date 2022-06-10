@@ -46,8 +46,8 @@ public class LivraisonActivity extends AppCompatActivity implements NavigationVi
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getBaseContext(), LivraisonActivity.class);
-                intent.putExtra("livraison", adapter.getLivraisons().get(position));
+                Livraison selectedLivraison= adapter.getLivraisons().get(position);
+                selectedLivraison.getIdlivraison();
             }
         });
     }
@@ -66,7 +66,9 @@ public class LivraisonActivity extends AppCompatActivity implements NavigationVi
 
     @Override
     public void receiveLivraison(ArrayList<Livraison> livraisons) {
-
+        adapter.setLivraisons(livraisons);
+        listView.setAdapter(adapter);
+        listView.invalidate();
     }
 
     @Override

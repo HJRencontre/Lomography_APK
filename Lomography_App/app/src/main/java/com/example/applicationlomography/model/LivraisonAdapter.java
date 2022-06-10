@@ -51,8 +51,8 @@ public class LivraisonAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.item_livraison, null);
-        TextView textView = (TextView) rowView.findViewById(R.id.textView);
-        textView.setText(livraisons.get(position).getIdlivraison());
+        TextView textView = (TextView) rowView.findViewById(R.id.textViewItemLivraisonName);
+        textView.setText("Commande N°"+livraisons.get(position).getIdlivraison());
         return rowView;
     }
 }
