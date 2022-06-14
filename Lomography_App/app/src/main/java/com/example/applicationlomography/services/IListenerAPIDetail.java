@@ -4,6 +4,6 @@ import com.example.applicationlomography.model.Livraison;
 
 import java.util.ArrayList;
 
-public interface IListenerAPIConnexion {
-    public void isConnect(boolean connect, int userid);
+public interface IListenerAPIDetail {
+    public void receiveLivraison(ArrayList<Livraison> livraisons);
 }

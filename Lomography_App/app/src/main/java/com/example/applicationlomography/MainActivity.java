@@ -38,10 +38,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onResume() {
         super.onResume();
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        Intent intent= getIntent();
+        if(intent.getBooleanExtra("isconnected", false)){
+            SharedPreferences.Editor editor= sharedPref.edit();
+            editor.putBoolean("ISCONNECTED", true);
+            editor.putInt("USERID", intent.getIntExtra("userid", -1));
+            editor.apply();
+        }
+
         boolean isconnected = sharedPref.getBoolean("ISCONNECTED", false);
         if(!isconnected){
-            Intent intent= new Intent(MainActivity.this, Connexion.class);
-            startActivity(intent);
+            Intent intentNoConnect= new Intent(MainActivity.this, Connexion.class);
+            startActivity(intentNoConnect);
         }
     }
 
@@ -107,8 +115,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_home:
                 break;
             case R.id.nav_commandes:
-                Intent intentCommande = new Intent(MainActivity.this, LivraisonActivity.class);
-                startActivity(intentCommande);
+                //Intent intentCommande = new Intent(MainActivity.this,
+                       // LivraisonActivity.class);
+                Intent unIntent = new Intent(this, LivraisonActivity.class);
+                this.startActivity(unIntent);
+                //startActivity(intentCommande);
                 break;
             case R.id.nav_login:
                 Intent intentLogin = new Intent(MainActivity.this,Connexion.class);
@@ -149,13 +160,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onClick(View view) {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        int userid = sharedPref.getInt("USERID", -1);
         if (view.getId()==R.id.idBoxCommandes)
         {
             Intent unIntent = new Intent(this, LivraisonActivity.class);
+            unIntent.putExtra("userid", userid);
             this.startActivity(unIntent);
         }
         else if (view.getId()==R.id.idBoxConnexion)
         {
+            SharedPreferences.Editor editor= sharedPref.edit();
+            editor.putBoolean("ISCONNECTED", false);
+            editor.apply();
             Intent unIntent = new Intent(this, Connexion.class);
             this.startActivity(unIntent);
         }

@@ -5,19 +5,23 @@ import java.io.Serializable;
 public class Livraison implements Serializable{
 
     private int idlivraison;
+    private int iduser;
+    private int idpanier;
     private String dateExpedition;
     private String datePrevu;
     private String serviceLivraison;
     private String adresse;
     private String typeLivraison;
 
-    public Livraison(int idlivraison, String dateExpedition, String datePrevu, String serviceLivraison, String adresse, String typeLivraison) {
+    public Livraison(int idlivraison, String dateExpedition, String datePrevu, String serviceLivraison, String adresse, String typeLivraison, int iduser, int idpanier) {
         this.idlivraison = idlivraison;
         this.dateExpedition = dateExpedition;
         this.datePrevu = datePrevu;
         this.serviceLivraison = serviceLivraison;
         this.adresse = adresse;
         this.typeLivraison = typeLivraison;
+        this.iduser = iduser;
+        this.idpanier = idpanier;
     }
 
     public int getIdlivraison() {
@@ -66,5 +70,21 @@ public class Livraison implements Serializable{
 
     public void setTypeLivraison(String typeLivraison) {
         this.typeLivraison = typeLivraison;
+    }
+
+    public int getIduser() {
+        return iduser;
+    }
+
+    public void setIduser(int iduser) {
+        this.iduser = iduser;
+    }
+
+    public int getIdpanier() {
+        return idpanier;
+    }
+
+    public void setIdpanier(int idpanier) {
+        this.idpanier = idpanier;
     }
 }

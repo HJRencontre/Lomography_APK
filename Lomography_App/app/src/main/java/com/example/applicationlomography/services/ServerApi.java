@@ -23,6 +23,9 @@ import com.example.applicationlomography.R;
 import com.example.applicationlomography.model.Livraison;
 import com.example.applicationlomography.services.IListenerAPI;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -30,9 +33,9 @@ import java.util.Map;
 
 public class ServerApi {
     private static String TAG= "API REQUEST";
-    private static String URL_API= "http://172.16.3.18/Promotion_241/Projets/Lomography_PPE/server/";
+    private static String URL_API= "http://172.16.8.131/Promotion_241/Projets/Lomography_PPE/server/";
 
-    public static void getLivraisons(Context context, final IListenerAPI listenerAPI) {
+    public static void getLivraisons(Context context, int userId, final IListenerAPI listenerAPI) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
         // Request a string response from the provided URL.
@@ -43,7 +46,13 @@ public class ServerApi {
                         // Display the first 500 characters of the response string.
                         Gson gson = new Gson();
                         Livraison[] tempArray = gson.fromJson(response, Livraison[].class);
-                        listenerAPI.receiveLivraison(new ArrayList<Livraison>(Arrays.asList(tempArray)));
+                        ArrayList<Livraison> livraisons = new ArrayList<Livraison>(Arrays.asList(tempArray));
+                        for(int i=0; i < livraisons.size(); i++){
+                            if(livraisons.get(i).getIduser()!=userId){
+                                livraisons.remove(i);
+                            }
+                        }
+                        listenerAPI.receiveLivraison(livraisons);
                         Log.d(TAG, "Ok je suis la");
                     }
                 }, new Response.ErrorListener() {
@@ -61,8 +70,14 @@ public class ServerApi {
         StringRequest postRequest = new StringRequest(Request.Method.POST, URL_API + "connexion", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(context, "Connexion OK", Toast.LENGTH_LONG);
-                context.startActivity(new Intent(context, MainActivity.class));
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    int status= jsonObject.getInt("status");
+                    int userid= jsonObject.getInt("userid");
+                    listener.isConnect(status==200, userid);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override

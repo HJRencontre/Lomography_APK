@@ -48,6 +48,8 @@ public class LivraisonActivity extends AppCompatActivity implements NavigationVi
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Livraison selectedLivraison= adapter.getLivraisons().get(position);
                 selectedLivraison.getIdlivraison();
+                Intent IntentLivraisonDetaillee = new Intent(getApplicationContext(), LivraisonDetailActivity.class);
+                startActivity(IntentLivraisonDetaillee);
             }
         });
     }
@@ -55,7 +57,9 @@ public class LivraisonActivity extends AppCompatActivity implements NavigationVi
     @Override
     protected void onResume(){
         super.onResume();
-        ServerApi.getLivraisons(this, this);
+        Intent intent= getIntent();
+        int userid= intent.getIntExtra("userid", -1);
+        ServerApi.getLivraisons(this, userid, this);
     }
 
     @Override

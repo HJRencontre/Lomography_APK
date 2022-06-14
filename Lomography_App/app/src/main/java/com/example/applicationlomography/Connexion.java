@@ -7,7 +7,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -147,9 +149,11 @@ public class Connexion extends AppCompatActivity implements NavigationView.OnNav
     }
 
     @Override
-    public void isConnect(boolean connect) {
+    public void isConnect(boolean connect, int userid) {
         if (connect) {
-            Intent unIntent = new Intent(this, MainActivity.class);
+            Intent unIntent = new Intent(Connexion.this, MainActivity.class);
+            unIntent.putExtra("isconnected", true);
+            unIntent.putExtra("userid", userid);
             this.startActivity(unIntent);
             Toast.makeText(this, "Connexion réussie : ", Toast.LENGTH_LONG).show();
         }
