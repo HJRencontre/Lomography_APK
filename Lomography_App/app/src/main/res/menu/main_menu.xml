@@ -21,8 +21,8 @@
                     android:title="Profil" />
                 <item
                     android:id="@+id/nav_login"
-                    android:icon="@drawable/profil"
-                    android:title="Connexion" />
+                    android:icon="@drawable/logout_icon"
+                    android:title="Déconnexion" />
                 <item
                     android:id="@+id/nav_logout"
                     android:icon="@drawable/logout_icon"

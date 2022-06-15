@@ -119,7 +119,7 @@ public class Email extends AppCompatActivity implements NavigationView.OnNavigat
                 startActivity(intentHome);
                 break;
             case R.id.nav_commandes:
-                Intent intentCommande = new Intent(Email.this, CommandeActivity.class);
+                Intent intentCommande = new Intent(Email.this, LivraisonActivity.class);
                 startActivity(intentCommande);
                 break;
             case R.id.nav_login:

@@ -69,7 +69,7 @@ public class CommandeActivity extends AppCompatActivity implements NavigationVie
         navigationView.setCheckedItem(R.id.nav_home);
 
         this.btRetourCmdToMenu = (Button) findViewById(R.id.idRetourCmdToMenu);
-        this.btCmdToSAV = (Button) findViewById(R.id.idCmdToSAV);
+        //this.btCmdToSAV = (Button) findViewById(R.id.idCmdToSAV);
         this.lvListeCmd = (ListView) findViewById(R.id.idLivraison);
         //Rendre les boutons écoutables
         this.btRetourCmdToMenu.setOnClickListener(this);
@@ -100,13 +100,8 @@ public class CommandeActivity extends AppCompatActivity implements NavigationVie
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.idRetourCmdToMenu){
-            Intent unIntent = new Intent(this, MainActivity.class);
+            Intent unIntent = new Intent(getApplicationContext(), MainActivity.class);
             this.startActivity(unIntent);
-        } else {
-            if(view.getId() == R.id.idCmdToSAV){
-                Intent unIntent = new Intent(this, Email.class);
-                this.startActivity(unIntent);
-            }
         }
     }
 

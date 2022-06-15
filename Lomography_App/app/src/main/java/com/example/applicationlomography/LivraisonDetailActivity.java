@@ -2,6 +2,7 @@ package com.example.applicationlomography;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -18,17 +20,20 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.applicationlomography.model.Livraison;
 import com.example.applicationlomography.model.LivraisonAdapter;
+import com.example.applicationlomography.model.LivraisonDetail;
+import com.example.applicationlomography.model.LivraisonDetailAdapter;
 import com.example.applicationlomography.services.IListenerAPI;
+import com.example.applicationlomography.services.IListenerAPIDetail;
 import com.example.applicationlomography.services.ServerApi;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class LivraisonDetailActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, IListenerAPI{
+public class LivraisonDetailActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, IListenerAPIDetail {
     private ListView listView;
-    private LivraisonAdapter adapter;
+    private LivraisonDetailAdapter adapter;
     private TextView textName, textDescription;
-    private Button btRetourCmdToMenu, btCmdToSAV;
+    private Button btPrblm;
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -38,6 +43,7 @@ public class LivraisonDetailActivity extends AppCompatActivity implements Naviga
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.livraison_detail);
+        listView = (ListView) findViewById(R.id.idLivraisonDetaillee);
     }
 
     @Override
@@ -49,7 +55,7 @@ public class LivraisonDetailActivity extends AppCompatActivity implements Naviga
                 startActivity(intentHome);
                 break;
             case R.id.nav_commandes:
-                Intent intentCommande = new Intent(LivraisonDetailActivity.this, CommandeActivity.class);
+                Intent intentCommande = new Intent(LivraisonDetailActivity.this, LivraisonActivity.class);
                 startActivity(intentCommande);
                 break;
             case R.id.nav_login:
@@ -95,7 +101,18 @@ public class LivraisonDetailActivity extends AppCompatActivity implements Naviga
     }
 
     @Override
-    public void receiveLivraison(ArrayList<Livraison> livraisons) {
+    public void receiveLivraison(ArrayList<LivraisonDetail> livraisons) {
+        adapter = new LivraisonDetailAdapter(this);
+        adapter.setLivraisons(livraisons);
+        listView.setAdapter(adapter);
+        listView.invalidate();
+    }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Intent intent= getIntent();
+        int idlivraison= intent.getIntExtra("idlivraison", -1);
+        ServerApi.getLivraisonDetails(this, idlivraison, this);
     }
 }

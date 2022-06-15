@@ -24,7 +24,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Avis extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-    private RadioGroup rgAvis;
+    private RadioGroup rgAvis, rgAvis2;
     private Button btValider;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -47,6 +47,7 @@ public class Avis extends AppCompatActivity implements NavigationView.OnNavigati
 
         this.btValider=(Button) findViewById(R.id.idAvisValider);
         this.rgAvis=(RadioGroup) findViewById(R.id.idAvisApp);
+        this.rgAvis2=(RadioGroup) findViewById(R.id.idAvisApp4);
 
         this.btValider.setOnClickListener(this);
 
@@ -90,7 +91,7 @@ public class Avis extends AppCompatActivity implements NavigationView.OnNavigati
                 startActivity(intentHome);
                 break;
             case R.id.nav_commandes:
-                Intent intentCommande = new Intent(Avis.this, CommandeActivity.class);
+                Intent intentCommande = new Intent(Avis.this, LivraisonActivity.class);
                 startActivity(intentCommande);
                 break;
             case R.id.nav_login:
@@ -135,15 +136,46 @@ public class Avis extends AppCompatActivity implements NavigationView.OnNavigati
         if(view.getId() == R.id.idAvisValider){
 
             int score = 0;
-            switch(this.rgAvis.getCheckedRadioButtonId()){
-                case R.id.idAvisApp1: score = 16;break;
-                case R.id.idAvisApp2: score = 12;break;
-                case R.id.idAvisApp3: score = 8;break;
+            if(this.rgAvis.getCheckedRadioButtonId()==R.id.idAvisApp1)
+            {
+                score = score+1;
             }
-            
-            Toast.makeText(this, "Merci pour votre réponse ! Score :" + score, Toast.LENGTH_SHORT).show();
-            Intent unIntent = new Intent(this, MainActivity.class);
-            this.startActivity(unIntent);
+            if(this.rgAvis.getCheckedRadioButtonId()==R.id.idAvisApp2)
+            {
+                score = score+0;
+            }
+            if(this.rgAvis.getCheckedRadioButtonId()==R.id.idAvisApp3)
+            {
+                score = score-1;
+            }
+            if(this.rgAvis2.getCheckedRadioButtonId()==R.id.idAvisApp5)
+            {
+                score = score+1;
+            }
+            if(this.rgAvis2.getCheckedRadioButtonId()==R.id.idAvisApp6)
+            {
+                score = score+0;
+            }
+            if(this.rgAvis2.getCheckedRadioButtonId()==R.id.idAvisApp7)
+            {
+                score = score-1;
+            }
+
+            if (score>0) {
+                Toast.makeText(this, "Merci pour avis positif !  Score :" + score, Toast.LENGTH_SHORT).show();
+                Intent unIntent = new Intent(this, MainActivity.class);
+                this.startActivity(unIntent);
+            }
+            if (score==0) {
+                Toast.makeText(this, "Merci pour avis neutre ! Score : " + score, Toast.LENGTH_SHORT).show();
+                Intent unIntent = new Intent(this, MainActivity.class);
+                this.startActivity(unIntent);
+            }
+            if (score<0) {
+                Toast.makeText(this, "Merci pour avis bien que celui soit négatif ! Score :" + score, Toast.LENGTH_SHORT).show();
+                Intent unIntent = new Intent(this, MainActivity.class);
+                this.startActivity(unIntent);
+            }
         }
     }
 }

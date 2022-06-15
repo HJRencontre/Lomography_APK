@@ -15,18 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".logout"
-            android:exported="false" />
-        <activity
             android:name=".APropos"
             android:exported="false" />
         <activity
             android:name=".Chat"
             android:exported="false" />
-        <activity
-            android:name=".ui.login.Logout"
-            android:exported="false"
-            android:label="@string/title_activity_logout" />
         <activity
             android:name=".Profil"
             android:exported="false" />
@@ -46,8 +39,12 @@
             android:name=".Avis"
             android:exported="false" />
         <activity
+            android:name=".LivraisonDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

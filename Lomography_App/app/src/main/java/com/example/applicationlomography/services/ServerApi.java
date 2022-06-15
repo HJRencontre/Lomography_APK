@@ -16,6 +16,7 @@ import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.applicationlomography.model.Livraison;
+import com.example.applicationlomography.model.LivraisonDetail;
 import com.google.gson.Gson;
 
 import com.example.applicationlomography.MainActivity;
@@ -33,7 +34,7 @@ import java.util.Map;
 
 public class ServerApi {
     private static String TAG= "API REQUEST";
-    private static String URL_API= "http://172.16.8.131/Promotion_241/Projets/Lomography_PPE/server/";
+    private static String URL_API= "http://172.16.8.59/Promotion_241/Projets/Lomography_PPE/server/";
 
     public static void getLivraisons(Context context, int userId, final IListenerAPI listenerAPI) {
         // Instantiate the RequestQueue.
@@ -53,6 +54,31 @@ public class ServerApi {
                             }
                         }
                         listenerAPI.receiveLivraison(livraisons);
+                        Log.d(TAG, "Ok je suis la");
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "error");
+            }
+        });
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
+    public static void getLivraisonDetails(Context context, int livraisonId, final IListenerAPIDetail listener) {
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(context);
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_API + "livraisondetails/"+livraisonId,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        Gson gson = new Gson();
+                        LivraisonDetail[] tempArray = gson.fromJson(response, LivraisonDetail[].class);
+                        ArrayList<LivraisonDetail> livraisons = new ArrayList<LivraisonDetail>(Arrays.asList(tempArray));
+                        listener.receiveLivraison(livraisons);
                         Log.d(TAG, "Ok je suis la");
                     }
                 }, new Response.ErrorListener() {
@@ -97,7 +123,7 @@ public class ServerApi {
         queue.add(postRequest);
     }
 
-/*    public static void loadImage(Context context, String url, final ImageView imageView){
+    public static void loadImage(Context context, String url, final ImageView imageView){
         RequestQueue queue = Volley.newRequestQueue(context);
         ImageRequest request = new ImageRequest(url,
             new Response.Listener<Bitmap>() {
@@ -112,7 +138,7 @@ public class ServerApi {
                 }
             });
         queue.add(request);
-    }*/
+    }
 
     /*public static void createPersonnage(final Context context, final Personnage personnage){
         RequestQueue queue = Volley.newRequestQueue(context);

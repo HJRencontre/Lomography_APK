@@ -1,9 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".APropos">
+    tools:context=".APropos"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Desactiver la balise openDrawer ci -dessus pour enlever le menu qui gène si on veut
+    modif la page princpale-->
+
+    <!-- La balise navigation view ci-dessous permet de gérer le contenu de notre menu burger
+    Si on veut modifier la main page il suffit de la supprimer temporairement puis de la remettre
+    après-->
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/main_menu"
+        android:layout_gravity="start"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/menu" />
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="215dp"
+                android:layout_height="83dp"
+                android:layout_marginStart="99dp"
+                android:layout_marginEnd="98dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                app:srcCompat="@drawable/lomography_logo" />
+
+            <TextView
+                android:id="@+id/textNousContacter"
+                android:layout_width="375dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                android:text="Nous contacter : "
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/logo" />
+            <TextView
+                android:id="@+id/textNousContacter2"
+                android:layout_width="375dp"
+                android:layout_height="140dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Si vous nous contactez par le biais de formulaires ou directement par e-mail, nous conservons les données fournies pendant six mois afin de traiter la demande et les questions de suivi. Nous ne transmettrons pas les données individuelles des utilisateurs (y compris votre adresse électronique) à des tiers, sauf si nous avons obtenu votre consentement préalable."
+                app:layout_constraintTop_toBottomOf="@+id/textNousContacter"
+                />
+
+            <TextView
+                android:id="@+id/textAPropos"
+                android:layout_width="375dp"
+                android:layout_height="50dp"
+                android:text="A Propos"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textNousContacter2" />
+            <TextView
+                android:id="@+id/textAPropos2"
+                android:layout_width="375dp"
+                android:layout_height="200dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Lieu de juridiction : Tribunal de commerce de Vienne # 134784 m Enregistré sous le numéro 134784 m Membre de la Chambre économique fédérale autrichienne, Vienne Dispositions légales applicables : Droit autrichien (www.ris.bka.gv.at), à l'exclusion de ses règles de conflit de lois ; Est notamment applicable la loi sur la réglementation du commerce de 1994 (GewO 1994) Autorité de contrôle : Administration de la ville de Vienne La présente politique de confidentialité est en vigueur depuis le 25 mai 2018. "
+                app:layout_constraintTop_toBottomOf="@+id/textAPropos"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</androidx.drawerlayout.widget.DrawerLayout>

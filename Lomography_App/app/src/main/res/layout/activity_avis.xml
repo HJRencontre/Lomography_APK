@@ -23,6 +23,7 @@
         app:menu="@menu/main_menu"
         android:layout_gravity="start"/>
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -30,6 +31,19 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="170dp"
+                android:text="Recommenderiez-vous Lomography à un ami ? "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/idAvisApp" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -105,6 +119,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Pas satisfait" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/idAvisApp4"
+                android:layout_width="379dp"
+                android:layout_height="96dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13">
+
+                <RadioButton
+                    android:id="@+id/idAvisApp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Oui" />
+
+                <RadioButton
+                    android:id="@+id/idAvisApp6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Peut-être" />
+
+                <RadioButton
+                    android:id="@+id/idAvisApp7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Non" />
             </RadioGroup>
 
             <Button
